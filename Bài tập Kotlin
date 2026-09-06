@@ -1,0 +1,37 @@
+data class Student(
+    val id: String,
+    val name: String,
+    val math: Double,
+    val programming: Double,
+    val database: Double
+) {
+    val totalScore: Double get() = math + programming + database
+    val averageScore: Double get() = totalScore / 3.0
+    val maxScore: Double get() = maxOf(math, programming, database)
+    val isPassed: Boolean get() = averageScore >= 5.0
+}
+
+fun main() {
+    // Dữ liệu mẫu của sinh viên
+    val student = Student(
+        id = "241053122144",
+        name = "Thanh Tú",
+        math = 8.2,
+        programming = 5.5,
+        database = 6.5
+    )
+
+    // In thông tin sinh viên và kết quả theo yêu cầu
+    println("--- THÔNG TIN SINH VIÊN ---")
+    println("Mã sinh viên: ${student.id}")
+    println("Họ và tên: ${student.name}")
+    println("Điểm Math: ${student.math}")
+    println("Điểm Programming: ${student.programming}")
+    println("Điểm Database: ${student.database}")
+
+    println("\n--- KẾT QUẢ ĐÁNH GIÁ ---")
+    println("• Tổng điểm: ${student.totalScore}")
+    println("• Điểm trung bình: ${String.format("%.2f", student.averageScore)}")
+    println("• Điểm cao nhất: ${student.maxScore}")
+    println("• Sinh viên có đạt không?: ${if (student.isPassed) "ĐẠT (GPA >= 5.0)" else "KHÔNG ĐẠT (GPA < 5.0)"}")
+}
